@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  db:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    ports:
+    - 8080:8080
+    volumes:
+    - /Users/duc/Desktop/workspace_ronin/ronin_caching_service/postgres_data:/var/lib/postgresql/
+    environment:
+      POSTGRES_PASSWORD: ronin_default_password
+      POSTGRES_USER: ronin
+      POSTGRES_DB: ronin
+  broker:
+    image: bitnami/redis
+    restart: always
+    ports:
+    - 6379:6379
+    volumes:
+    - /Users/duc/Desktop/workspace_ronin/ronin_caching_service/redis_data:/bitnami/redis/data
+    environment:
+      REDIS_PASSWORD: ronin_default_password
